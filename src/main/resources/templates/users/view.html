@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragment :: head(title=~{::title/text()})">
+    <title th:text="#{view.title}">Users : View</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragment :: navbar"></div>
+    <div class="float-right mt-2">
+        <a class="btn btn-primary btn-sm" href="list.html" th:href="@{/}" th:text="#{view.users}">Users</a>
+    </div>
+    <h4 class="float-left mt-2" th:text="#{view.title}">Users : View</h4>
+    <div class="clearfix"></div>
+    <div class="alert alert-success" th:if="${globalUser}" th:text="#{${globalUser}}">Success
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" th:text="${user.id + ': ' + user.first_name + ' ' + user.last_name}">ABC</h4>
+            <p class="card-text" th:text="${user.classes}">Class</p>
+            <a class="card-link" href="users" th:href="@{'/delete/' + ${user.id}}" th:text="#{view.delete}">Xóa</a>
+            <a class="card-link" href="form.html" th:href="@{'/modify/' + ${user.id}}" th:text="#{view.modify}">Chỉnh sửa</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

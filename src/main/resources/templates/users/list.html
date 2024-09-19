@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragment :: head(title=~{::title/text()})">
+    <title th:text="#{list.title}">Users : View all</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragment :: navbar"></div>
+    <div class="float-right mt-2">
+        <a class="btn btn-primary btn-sm" href="form.html" th:href="@{/(form)}" th:text="#{list.create}">Create User</a>
+    </div>
+    <h4 class="float-left mt-2" th:text="#{list.title}">Users : View all</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th th:text="#{list.table.id}">ID</th>
+            <th th:text="#{list.table.first_name}">First name</th>
+            <th th:text="#{list.table.last_name}">Last name</th>
+            <th th:text="#{list.table.classes}">Class</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.empty}">
+            <td colspan="4" th:text="#{list.table.empty}">No users</td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">1</td>
+            <td><a href="view.html" th:href="@{'/' + ${user.id}}"
+                   th:text="${user.first_name}"> First name </a></td>
+            <td><a href="view.html" th:href="@{'/' + ${user.id}}"
+                   th:text="${user.last_name}"> Last name </a></td>
+            <td><a href="view.html" th:href="@{'/' + ${user.id}}"
+                   th:text="${user.classes}"> Class </a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
